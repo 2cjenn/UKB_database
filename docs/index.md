@@ -16,9 +16,19 @@ I recommend cloning this repository onto your computer and using [`renv`](https:
 
 Alternatively, you can install the necessary packages manually.
 
+If you want to extract data into Stata, you will also need to install [Python](https://www.python.org/) and [Stata](https://www.stata.com/new-in-stata/) version 17.
 
+## Creating the database
 
-If you want to extract data into Stata, you will also need to install 
+See [Creating the database](database.md).
+
+## Extracting data in R
+
+See [Extracting data in R](r.md).
+
+## Extracting data in Stata
+
+See [Extracting Data in Stata](stata.md).
 
 # Cautionary Note
 
@@ -29,4 +39,4 @@ Please consider using some form of package management, for example [`renv`](http
 
 
 
-![This is an image](figs/ukbconv.PNG)
+

@@ -1,3 +1,8 @@
+---
+title: Extracting data in R
+filename: r.md
+---
+
 # Setup
 
 You will need the files in the [r](https://github.com/2cjenn/UKB_database/tree/main/r) folder of this repository.
