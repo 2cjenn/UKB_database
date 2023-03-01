@@ -1,0 +1,4 @@
+Field_ID,Field_Description,NewVarName,Coded,Notes
+eid,Anonymised Patient ID,ID,JC,"The Field_ID of ""eid"" is necessary for the automated renaming process"
+31,Sex,BaC_Sex,JC,
+53,Date of attending assessment centre,Rec_DateAssess,JC,

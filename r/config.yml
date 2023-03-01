@@ -1,0 +1,5 @@
+data:
+ database: "path/to/database.db"
+cleaning:
+ renaming: "path/to/mapping.csv"
+ withdrawals: "path/to/withdrawals.csv"
