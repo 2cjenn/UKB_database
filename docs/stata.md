@@ -9,7 +9,7 @@ Stata 17 has Python integration, and we will use this to extract the data from t
 
 If you have not yet made a database containing your UK Biobank dataset, you will need to do so before you can extract data from it! See the instructions on [creating the database](database.md).
 
-To use Python and Stata to extract data from the database, you need the files in the [pythonStata](https://github.com/2cjenn/UKB_database/tree/main/pythonStata) folder of thi [UKB_database repository](https://github.com/2cjenn/UKB_database).
+To use Python and Stata to extract data from the database, you need the files in the [pythonStata](https://github.com/2cjenn/UKB_database/tree/main/pythonStata) folder of this [UKB_database repository](https://github.com/2cjenn/UKB_database).
 
 ## Setting up Python on your computer
 
@@ -55,24 +55,25 @@ Fields can be specified in R style (f.1234.0.0) or Stata style (n_1234_0_0).
 
 When specifying fields by prefix, you can request multiple data columns
 
-For example: ts_40000_ will return any ts_40000_X_Y, in this case ts_40000_0_0 and ts_40000_1_0
+For example: ts_40000_ will return any ts_40000_X_Y, in this case ts_40000_0_0 and ts_40000_1_0.
 
-To request eg all baseline SBP measurements, n_4080_0_ will return all n_4080_0_Y, in this case n_4080_0_0 and n_4080_0_1. This can save space by not loading the repeat visit columns if they’re not of interest.
+To request eg all baseline SBP measurements, n_4080\_0\_ will return all n_4080_0_Y, in this case n_4080_0_0 and n_4080_0_1. This can save space by not loading the repeat visit columns if they’re not of interest.
 
 It’s important to start with a letter and end with an underscore.
 
 ##	By maximum required instance/measure
 
-For example: n_4080_3_0 will return the first measurement only from all visits, n_4080_0_0, n_4080_1_0, n_4080_2_0, n_4080_3_0.
+For example: ts_40000_A_B will return any ts_40000_X_Y where X ≤ A and Y ≤ B.
+
+If you were instead interested in the first recorded SBP measurement at each assessment visit, n_4080_3_0 will return n_4080_0_0, n_4080_1_0, n_4080_2_0, n_4080_3_0.
 
 ##	By category
 
 Specify a category to return all columns for all fields in that category.
 
-For example: 110 will return all fields in the T1 structural brain MRI category.
+For example: 110 will return all fields in [Category 110](https://biobank.ndph.ox.ac.uk/showcase/label.cgi?id=110): the T1 structural brain MRI category.
 
 Specify just the category number, no letters or other characters.
-
 
 # Running the script
 
@@ -104,3 +105,20 @@ We recommend you use the provided [`Run_Script.do`](https://github.com/2cjenn/UK
 This expects Stata version 17 to be installed in `C:/Program Files/Stata17/StataMP-64.exe`.
 
 If this is not the case, you will need to modify this path in the Python script.
+
+##	Max columns
+
+As ever, memory restrictions can be a problem. In particular, converting the data from Python to Stata requires more memory than just having the data open. 
+
+For this reason, if there are a lot of columns in your data it will be automatically split into multiple files. The maximum number of columns per data file can be specified as a parameter to the script.
+
+When the data is split into multiple files, the data fields are grouped by category so related fields can be found in the same file. This does mean each file won’t necessarily have the maximum permitted number of columns.
+
+##	The do files
+
+In order to properly format the data to have beautiful Stata variable names and labelled numerics and fancy dates:
+
+* The data is saved in the database without the R formatting applied
+* The script extracts the relevant commands from the .do and .dct files created by ukbconv when converting the data download
+  * This means we will need to keep running the ukbconv command for stata, but I think it creates those files first, then we can just kill it instead of waiting for it to create the data file
+* The script assembles the relevant commands from the ukbconv .do and .dct files, assembles them into a helper .do file tailored for the data fields extracted, and automatically runs that .do file to format the data.
