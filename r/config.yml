@@ -3,3 +3,5 @@ data:
 cleaning:
  renaming: "path/to/mapping.csv"
  withdrawals: "path/to/withdrawals.csv"
+ hierarchy: "path/to/catbrowse.csv"
+ ukb_fields: "path/to/UKB_fields.csv"
