@@ -281,7 +281,8 @@ edit_ukb_r <- function(r_location) {
 read_ukb_tab <- function(tab_location,
                          column_type,
                          header=FALSE,
-                         col.names=NULL) {
+                         col.names=NULL,
+                         nthreads) {
 
   # Read the data - these chunks aren't quite identical, I promise!
   if(is.null(col.names)){
