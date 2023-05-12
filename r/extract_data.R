@@ -7,7 +7,7 @@ library(tidyverse)
 # Load the project config file for filepaths etc
 if (!exists("config")) {
   library(yaml)
-  config = yaml.load_file("config.yml")
+  config = yaml.load_file("r/config.yml")
 }
 
 
