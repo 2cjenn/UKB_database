@@ -6,4 +6,4 @@ data <- bulk_extraction(fieldlist = "r/fields.txt",
                             withdrawals = config$cleaning$withdrawals,
                             hierarchy_file = config$cleaning$hierarchy,
                             fields_file = config$cleaning$ukb_fields)
-saveRDS(data, "CoF_Category100026.rds")
+saveRDS(data, "Metabolic_RepeatMeasures_20230512.rds")
