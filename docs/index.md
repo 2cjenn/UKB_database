@@ -6,7 +6,7 @@
 ## Pre-requisites
 
 * Access to a UK Biobank application
-* A dataset downloaded from UK Biobank (see [Accessing UK Biobank Data](https://biobank.ctsu.ox.ac.uk/~bbdatan/Accessing_UKB_data_v2.3.pdf))
+* A dataset downloaded from UK Biobank (see [Accessing UK Biobank Data](https://biobank.ndph.ox.ac.uk/~bbdatan/Data_Access_Guide_v3.1.pdf))
 
 ## Set-up
 

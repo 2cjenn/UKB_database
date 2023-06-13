@@ -9,11 +9,11 @@ You will need the scripts in the [database](https://github.com/2cjenn/UKB_databa
 
 ## How to use
 
-* Follow the steps in Section 2.2 (Downloading, validating & decrypting a main dataset) in the [Accessing UK Biobank Data](https://biobank.ndph.ox.ac.uk/~bbdatan/Data_Access_Guide_v3.0.pdf) guide.
+* Follow the steps in Section 2.2 (Downloading, validating & decrypting a main dataset) in the [Accessing UK Biobank Data](https://biobank.ndph.ox.ac.uk/~bbdatan/Data_Access_Guide_v3.1.pdf) guide.
 * At this point you should have a directory containing:
   * the `ukbconv` utility [Windows](https://biobank.ndph.ox.ac.uk/showcase/download.cgi)/[Linux](https://biobank.ndph.ox.ac.uk/showcase/download.cgi?id=201&ty=ut) 
   * ukbXXXXX.enc_ukb - the file generated from Step 2.2.5 using `ukbunpack`
-* Use ukbconv as per Section 2.3 (Converting a main dataset to your preferred format) of the [Accessing UK Biobank Data](https://biobank.ndph.ox.ac.uk/~bbdatan/Data_Access_Guide_v3.0.pdf) guide to generate
+* Use ukbconv as per Section 2.3 (Converting a main dataset to your preferred format) of the [Accessing UK Biobank Data](https://biobank.ndph.ox.ac.uk/~bbdatan/Data_Access_Guide_v3.1.pdf) guide to generate
   * The .R and .tab files, using the `r` option
   * The .html documentation file, using the `docs` option
 * Open a terminal window and run the following command, replacing `ukbXXXXX` with the name of your data file
