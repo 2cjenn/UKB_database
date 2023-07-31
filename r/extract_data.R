@@ -132,8 +132,10 @@ bulk_extraction <- function(fieldlist = "r/fields.txt",
 
   field_prefixes <- request_list[startsWith(request_list, "f.") & endsWith(request_list, ".")]
   if(length(field_prefixes)>0) {
-    pre_fields <- all_cols[startsWith(all_cols, field_prefixes)]
-    all_fields <- c(all_fields, pre_fields)
+    for(prefix in field_prefixes){
+      pre_fields <- all_cols[startsWith(all_cols, prefix)]
+      all_fields <- c(all_fields, pre_fields)
+    }
   }
 
   field_max <- request_list[startsWith(request_list, "f.") & !endsWith(request_list, ".")]
