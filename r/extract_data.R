@@ -53,7 +53,7 @@ DB_extract <- function(extract_cols,
   # Join all download tables to get all data and extract requested columns
   view <- lapply(tables, function(x) tbl(con, from=x)) %>%
     reduce(inner_join, by = "f.eid", suffix = c("", ".delete")) %>%
-    select(any_of(name_to_fdot(extract_cols, mapping)), -ends_with(".delete")) %>% # Remove duplicate cols
+    dplyr::select(any_of(name_to_fdot(extract_cols, mapping)), -ends_with(".delete")) %>% # Remove duplicate cols
     filter(!(f.eid %in% withdrawn_ids)) %>% # Exclude participants who have withdrawn
     collect %>%
     rename_with(fdot_to_name, mapping=mapping)
@@ -165,7 +165,7 @@ bulk_extraction <- function(fieldlist = "r/fields.txt",
   # Join all download tables to get all data and extract requested columns
   view <- lapply(tables, function(x) tbl(con, from=x)) %>%
     reduce(inner_join, by = "f.eid", suffix = c("", ".delete")) %>%
-    select(any_of(unique_fields), -ends_with(".delete")) %>% # Remove duplicate cols
+    dplyr::select(any_of(unique_fields), -ends_with(".delete")) %>% # Remove duplicate cols
     filter(!(f.eid %in% withdrawn_ids)) %>% # Exclude participants who have withdrawn
     collect %>%
     rename_with(fdot_to_name, mapping=mapping)
