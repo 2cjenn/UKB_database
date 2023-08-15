@@ -109,7 +109,8 @@ bulk_extraction <- function(fieldlist = "r/fields.txt",
   all_fields <- c("f.eid")
   # Read in the file containing requested fields
   request_list <- read.delim(fieldlist, header=FALSE)[,1]
-  request_list <- request_list[!request_list == "f.eid"]
+  request_list <- gsub(" ", "", request_list, fixed = TRUE)
+  request_list <- request_list[!request_list == "f.eid" & !request_list == ""]
 
   categories <- request_list[!startsWith(request_list, "f.")]
   if(length(categories)>0) {
