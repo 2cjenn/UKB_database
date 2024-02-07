@@ -2,6 +2,7 @@ library(DBI)
 library(duckdb)
 library(yaml)
 library(tidyverse)
+library(data.table)
 
 
 # Load the project config file for filepaths etc
@@ -90,9 +91,7 @@ DB_extract <- function(extract_cols,
 bulk_extraction <- function(fieldlist = "r/fields.txt",
                                 db = config$data$database,
                                 name_map = config$cleaning$renaming,
-                                withdrawals = config$cleaning$withdrawals,
-                                hierarchy_file = config$cleaning$hierarchy,
-                                fields_file = config$cleaning$ukb_fields) {
+                                withdrawals = config$cleaning$withdrawals) {
 
   mapping <- read.csv(name_map, stringsAsFactors = FALSE)
   withdrawals <- read.csv(withdrawals, header=FALSE)
@@ -115,8 +114,8 @@ bulk_extraction <- function(fieldlist = "r/fields.txt",
   categories <- request_list[!startsWith(request_list, "f.")]
   if(length(categories)>0) {
 
-    hierarchy <- read.csv(hierarchy_file)
-    fields <- read.csv(fields_file)
+    hierarchy <- data.table::fread(input="https://biobank.ndph.ox.ac.uk/ukb/scdown.cgi?fmt=txt&id=13")
+    fields <- data.table::fread(input="https://biobank.ndph.ox.ac.uk/ukb/scdown.cgi?fmt=txt&id=1")
 
     children <- categories
 
