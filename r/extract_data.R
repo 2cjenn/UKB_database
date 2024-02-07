@@ -124,10 +124,14 @@ bulk_extraction <- function(fieldlist = "r/fields.txt",
       children <- hierarchy$child_id[hierarchy$parent_id %in% children]
       categories = c(categories, children)
     }
-
-    id_list <- paste0("f.", fields$field_id[fields$main_category %in% categories])
-    cat_fields <- unlist(lapply(id_list, FUN=function(id){all_cols[startsWith(all_cols, id)]}))
-    all_fields <- c(all_fields, cat_fields)
+    fields_in_category <-  fields[fields$main_category %in% categories,]
+    if (nrow(fields_in_category)==0) {
+      stop("No fields found in category")
+    } else {
+      id_list <- paste0("f.", fields_in_category$field_id)
+      cat_fields <- unlist(lapply(id_list, FUN=function(id){all_cols[startsWith(all_cols, id)]}))
+      all_fields <- c(all_fields, cat_fields)
+    }
   }
 
 
