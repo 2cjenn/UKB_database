@@ -282,7 +282,7 @@ read_ukb_tab <- function(tab_location,
                          column_type,
                          header=FALSE,
                          col.names=NULL,
-                         nthreads) {
+                         n_threads) {
 
   # Read the data - these chunks aren't quite identical, I promise!
   if(is.null(col.names)){
